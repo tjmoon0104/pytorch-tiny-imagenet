@@ -1,0 +1,7 @@
+models
+tiny-224
+tiny-imagenet-200
+tiny-imagenet-200.zip
+__pycache__
+.*
+!/.gitignore
