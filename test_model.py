@@ -1,6 +1,6 @@
 import torch, time, sys
 
-def test_model(model, dataloaders, dataset_sizes, criterion, optimizer, scheduler):
+def test_model(model, dataloaders, dataset_sizes, criterion, optimizer):
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     since = time.time()
 
