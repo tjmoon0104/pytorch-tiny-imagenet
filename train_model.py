@@ -68,7 +68,6 @@ def train_model(model, dataloaders, dataset_sizes, criterion, optimizer, num_epo
             if phase == 'val' and epoch_acc > best_acc:
                 best_acc = epoch_acc
                 best_model_wts = copy.deepcopy(model.state_dict())
-                best = epoch+1
                 
         liveloss.update({
             'log loss': avg_loss,
@@ -85,3 +84,4 @@ def train_model(model, dataloaders, dataset_sizes, criterion, optimizer, num_epo
     time_elapsed = time.time() - since
     print('Training complete in {:.0f}m {:.0f}s'.format(
         time_elapsed // 60, time_elapsed % 60))
+    print('Best Validation Accuracy: {}'.format(best_acc))
