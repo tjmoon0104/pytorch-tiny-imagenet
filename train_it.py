@@ -16,7 +16,8 @@ def train_model_it(model, dataloaders, dataset_sizes, criterion, optimizer, batc
         running_corrects = 0
         #Iteration
         for i, (inputs, labels) in enumerate(dataloaders['train']):
-            scheduler.step()
+            if scheduler != None:
+                scheduler.step()
             model.train()
             running_loss = 0.0
             running_corrects = 0

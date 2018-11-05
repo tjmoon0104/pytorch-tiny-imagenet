@@ -16,7 +16,8 @@ def train_model(model, dataloaders, dataset_sizes, criterion, optimizer, num_epo
         # Each epoch has a training and validation phase
         for phase in ['train', 'val']:
             if phase == 'train':
-                scheduler.step()
+                if scheduler != None:
+                    scheduler.step()
                 model.train()  # Set model to training mode
             else:
                 model.eval()   # Set model to evaluate mode
