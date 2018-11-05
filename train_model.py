@@ -2,7 +2,7 @@ import torch, time, copy, sys
 import matplotlib.pyplot as plt
 from livelossplot import PlotLosses
 
-def train_model(model, dataloaders, dataset_sizes, criterion, optimizer, num_epochs=5):
+def train_model(model, dataloaders, dataset_sizes, criterion, optimizer, num_epochs=5, scheduler=None):
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     since = time.time()
     liveloss = PlotLosses()
@@ -16,6 +16,7 @@ def train_model(model, dataloaders, dataset_sizes, criterion, optimizer, num_epo
         # Each epoch has a training and validation phase
         for phase in ['train', 'val']:
             if phase == 'train':
+                scheduler.step()
                 model.train()  # Set model to training mode
             else:
                 model.eval()   # Set model to evaluate mode
@@ -67,6 +68,7 @@ def train_model(model, dataloaders, dataset_sizes, criterion, optimizer, num_epo
             # deep copy the model
             if phase == 'val' and epoch_acc > best_acc:
                 best_acc = epoch_acc
+                best = epoch + 1
                 best_model_wts = copy.deepcopy(model.state_dict())
                 
         liveloss.update({
@@ -84,4 +86,4 @@ def train_model(model, dataloaders, dataset_sizes, criterion, optimizer, num_epo
     time_elapsed = time.time() - since
     print('Training complete in {:.0f}m {:.0f}s'.format(
         time_elapsed // 60, time_elapsed % 60))
-    print('Best Validation Accuracy: {}'.format(best_acc))
+    print('Best Validation Accuracy: {}, Epoch: {}'.format(best_acc, best))

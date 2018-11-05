@@ -2,7 +2,7 @@ import torch, time, copy, sys
 import matplotlib.pyplot as plt
 from livelossplot import PlotLosses
 
-def train_model(model, dataloaders, dataset_sizes, criterion, optimizer, scheduler, batch_size, num_epochs=25):
+def train_model_it(model, dataloaders, dataset_sizes, criterion, optimizer, batch_size, num_epochs=10, scheduler=None):
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     since = time.time()
     liveloss = PlotLosses()
@@ -16,6 +16,7 @@ def train_model(model, dataloaders, dataset_sizes, criterion, optimizer, schedul
         running_corrects = 0
         #Iteration
         for i, (inputs, labels) in enumerate(dataloaders['train']):
+            scheduler.step()
             model.train()
             running_loss = 0.0
             running_corrects = 0
@@ -74,7 +75,7 @@ def train_model(model, dataloaders, dataset_sizes, criterion, optimizer, schedul
                 print('validation loss: {}, validation accuracy: {}'.format(valid_loss, valid_acc))
                 print('Best Accuracy: {}'.format(best_acc))
 
-        torch.save(model, "./models/acc_{}_loss_{}.pt".format(best_acc, valid_loss)) 
+                torch.save(model.state_dict(), "./models/acc_{}_loss_{}.pt".format(best_acc, valid_loss)) 
                 
 #         print('Train Loss: {:.4f} Acc: {:.4f}'.format(avg_loss, t_acc))
 #         print(  'Val Loss: {:.4f} Acc: {:.4f}'.format(val_loss, val_acc))
