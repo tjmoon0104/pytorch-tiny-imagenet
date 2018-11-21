@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 from livelossplot import PlotLosses
 
 def train_model(output_path, model, dataloaders, dataset_sizes, criterion, optimizer, num_epochs=5, scheduler=None):
-    if not os.path.exists(str(output_path):
-        os.makedirs(str(output_path))
+    if not os.path.exists('models/'+str(output_path)):
+        os.makedirs('models/'+str(output_path))
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     since = time.time()
     liveloss = PlotLosses()
@@ -85,7 +85,7 @@ def train_model(output_path, model, dataloaders, dataset_sizes, criterion, optim
         print('Train Loss: {:.4f} Acc: {:.4f}'.format(avg_loss, t_acc))
         print(  'Val Loss: {:.4f} Acc: {:.4f}'.format(val_loss, val_acc))
         print()
-        torch.save(model.state_dict(), './models/' + str(output_path) + 'model_{}_epoch.pt'.format(epoch+1))
+        torch.save(model.state_dict(), './models/' + str(output_path) + '/model_{}_epoch.pt'.format(epoch+1))
     time_elapsed = time.time() - since
     print('Training complete in {:.0f}m {:.0f}s'.format(
         time_elapsed // 60, time_elapsed % 60))
