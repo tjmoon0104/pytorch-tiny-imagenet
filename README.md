@@ -31,3 +31,5 @@ Finetune few layers, and use pretrained weight from 224x224 trained model to ret
 | ResNet18 | 69.62%      | 224x224    | ImageNet          |
 | ResNet18 | 69.80%      | 64x64      | Model Above       |
 
+### Capstone Proposal Review
+https://review.udacity.com/#!/reviews/1541377
