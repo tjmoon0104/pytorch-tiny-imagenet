@@ -3,14 +3,14 @@
 ### Requirements
 
 ```
-torch, torchvision, cv2, livelossplot
+torch, torchvision, cv2, livelossplot, unzip
 ```
 
 Use run.sh to format tiny-imagenet into pytorch dataset format.
 
 cv2 must be installed before executing ./run.sh
 
-
+**Trouble shooting** with OpenCV [here](https://github.com/NVIDIA/nvidia-docker/issues/864#issuecomment-452023152)
 
 ### Summary
 
