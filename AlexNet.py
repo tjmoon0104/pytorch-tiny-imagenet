@@ -2,15 +2,15 @@ import torch.nn as nn
 import torch.utils.model_zoo as model_zoo
 
 
-__all__ = ['AlexNet', 'alexnet']
+__all__ = ["AlexNet", "alexnet"]
 
 
 model_urls = {
-    'alexnet': 'https://download.pytorch.org/models/alexnet-owt-4df8aa71.pth',
+    "alexnet": "https://download.pytorch.org/models/alexnet-owt-4df8aa71.pth",
 }
 
-class AlexNet(nn.Module):
 
+class AlexNet(nn.Module):
     def __init__(self, num_classes=1000):
         super(AlexNet, self).__init__()
         self.features = nn.Sequential(
@@ -43,6 +43,8 @@ class AlexNet(nn.Module):
         x = x.view(x.size(0), 256 * 1 * 1)
         x = self.classifier(x)
         return x
+
+
 def alexnet(pretrained=False, **kwargs):
     r"""AlexNet model architecture from the
     `"One weird trick..." <https://arxiv.org/abs/1404.5997>`_ paper.
@@ -51,7 +53,7 @@ def alexnet(pretrained=False, **kwargs):
     """
     model = AlexNet(**kwargs)
     if pretrained:
-        model.load_state_dict(model_zoo.load_url(model_urls['alexnet']))
+        model.load_state_dict(model_zoo.load_url(model_urls["alexnet"]))
     model.classifier[1] = nn.Linear(256 * 1 * 1, 4096)
     model.classifier[6] = nn.Linear(4096, 200)
     return model
