@@ -8,6 +8,9 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.11"
 opencv-python = "^4.8.1.78"
+torch = "^2.1.1"
+torchvision = "^0.16.1"
+livelossplot = "^0.5.5"
 
 [tool.black]
 line-length = 119
