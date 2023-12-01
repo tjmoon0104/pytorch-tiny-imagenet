@@ -10,7 +10,8 @@ from tqdm import tqdm
 
 random.seed(42)
 
-DATASET_URL = "http://cs231n.stanford.edu/tiny-imagenet-200.zip"
+# DATASET_URL = "http://cs231n.stanford.edu/tiny-imagenet-200.zip"
+DATASET_URL = "https://github.com/tjmoon0104/pytorch-tiny-imagenet/releases/download/tiny-imagenet-dataset/tiny-imagenet-200.zip"
 DATASET_ZIP = Path("./tiny-imagenet-200.zip")
 DATASET_MD5_HASH = "90528d7ca1a48142e341f4ef8d21d0de"
 
