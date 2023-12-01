@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "pytorch-tiny-imagenet"
+version = "0.1.0"
+description = ""
+authors = ["Taejun Moon <tjmoon0104@outlook.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.black]
+line-length = 119
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.11.0"
+tqdm = "^4.66.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
