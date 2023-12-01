@@ -4,6 +4,7 @@ from hashlib import md5
 from pathlib import Path
 from urllib.request import urlretrieve
 from zipfile import ZipFile
+import cv2
 
 from tqdm import tqdm
 
@@ -85,13 +86,39 @@ def split_list_randomly(input_list: list[str], split_ratio=0.5) -> dict[str, lis
 
 
 # Sample from validation images randomly into validation and test sets (50/50)
-for image_label, images in val_dict.items():
-    for split_type, split_images in split_list_randomly(images, split_ratio=0.5).items():
-        for image in split_images:
-            src = ORIGINAL_VAL_DIR / "images" / image
-            dest_folder = DATASET_DIR / split_type / image_label / "images"
-            dest_folder.mkdir(parents=True, exist_ok=True)
-            src.replace(dest_folder / image)
+print("Splitting original dataset images...")
+with tqdm(val_dict.items(), desc="Splitting images", unit="class") as t:
+    for image_label, images in t:
+        for split_type, split_images in split_list_randomly(images, split_ratio=0.5).items():
+            for image in split_images:
+                src = ORIGINAL_VAL_DIR / "images" / image
+                dest_folder = DATASET_DIR / split_type / image_label / "images"
+                dest_folder.mkdir(parents=True, exist_ok=True)
+                src.replace(dest_folder / image)
+        t.update()
 
 # Remove original directory
 shutil.rmtree(ORIGINAL_DATASET_DIR)
+
+# Remove resized data set directory
+RESIZED_DIR = Path("./tiny-224")
+if RESIZED_DIR.exists():
+    shutil.rmtree(RESIZED_DIR)
+
+# Copy processed dataset to tiny-224
+print("Copying processed dataset to tiny-224...")
+shutil.copytree(DATASET_DIR, RESIZED_DIR)
+
+
+# Resize images to 224x224
+def resize_img(image_path: Path, size: int = 224) -> None:
+    img = cv2.imread(image_path.as_posix())
+    img = cv2.resize(img, (size, size), interpolation=cv2.INTER_CUBIC)
+    cv2.imwrite(image_path.as_posix(), img)
+
+
+all_images = [*Path("tiny-224").glob("**/*.JPEG")]
+print("Resizing images...")
+with tqdm(all_images, desc="Resizing images", unit="file") as t:
+    for image in t:
+        resize_img(image, 224)
