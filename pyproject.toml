@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "pytorch-tiny-imagenet"
+version = "0.1.0"
+description = ""
+authors = ["Taejun Moon <tjmoon0104@outlook.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+opencv-python = "^4.8.1.78"
+torch = "^2.1.1"
+torchvision = "^0.16.1"
+livelossplot = "^0.5.5"
+
+[tool.black]
+line-length = 119
+
+[tool.poetry.group.dev.dependencies]
+black = {extras = ["jupyter"], version = "^23.11.0"}
+tqdm = "^4.66.1"
+jupyter = "^1.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
