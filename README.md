@@ -2,14 +2,14 @@
 
 ### Installation
 
-If you are familiar with poetry, you can install dependencies with poetry install.
+If you are familiar with [uv](https://docs.astral.sh/uv/getting-started/installation/), you can install dependencies with `uv sync`.
 Otherwise, you can install dependencies with requirements.txt
 
 **Trouble shooting** with OpenCV [here](https://github.com/NVIDIA/nvidia-docker/issues/864#issuecomment-452023152)
 
 ### Dataset
 
-`python prepare_dataset.py` will download and preprocess tiny-imagenet dataset.
+`python src/util/prepare_dataset.py` will download and preprocess tiny-imagenet dataset.
 In the original dataset, there are 200 classes, and each class has 500 images.
 However, in test dataset there are no labels, so I split the validation dataset into validation and test dataset. (25 per class)
 Probably not the best train(500), val(25), test(25) splitting method, but I think it's good enough for this project to evaluate transfer learning.
@@ -47,6 +47,6 @@ I haven't updated the code since then, but I decided to update this project than
 Since then, I have been working as Data Engineer, and I have improved my python programming skills.
 
 This version includes the following changes:
-- Poetry for dependency management
+- uv for dependency management
 - Pytorch with M1 Mac GPU support
 - Dataset download and preprocessing with python

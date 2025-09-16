@@ -1,25 +1,26 @@
-[tool.poetry]
-name = "pytorch-tiny-imagenet"
-version = "0.1.0"
-description = ""
-authors = ["Taejun Moon <tjmoon0104@outlook.com>"]
-readme = "README.md"
-
-[tool.poetry.dependencies]
-python = "^3.11"
-opencv-python = "^4.8.1.78"
-torch = "^2.1.1"
-torchvision = "^0.16.1"
-livelossplot = "^0.5.5"
-
-[tool.black]
+[tool.ruff]
 line-length = 119
 
-[tool.poetry.group.dev.dependencies]
-black = {extras = ["jupyter"], version = "^23.11.0"}
-tqdm = "^4.66.1"
-jupyter = "^1.0.0"
+[project]
+name = "pytorch-tiny-imagenet"
+version = "0.2.0"
+description = ""
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    {name = "Taejun Moon", email = "tjmoon0104@outlook.com"},
+]
+dependencies = [
+    "opencv-python>=4.8.1.78,<5.0.0",
+    "torch>=2.8.0,<3.0.0",
+    "torchvision>=0.16.1,<1.0.0",
+    "livelossplot>=0.5.5,<1.0.0",
+    "ruff>=0.13.0",
+]
 
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[dependency-groups]
+dev = [
+    "ruff>=0.13.0",
+    "tqdm>=4.66.1,<5.0.0",
+    "notebook>=7.4.5,<8.0.0",
+]
