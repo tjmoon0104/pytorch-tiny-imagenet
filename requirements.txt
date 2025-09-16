@@ -44,5 +44,5 @@ tornado==6.4
 triton==2.1.0 
 typing-extensions==4.8.0 
 tzdata==2023.3 
-urllib3==2.1.0 
+urllib3==2.5.0 
 xyzservices==2023.10.1 
