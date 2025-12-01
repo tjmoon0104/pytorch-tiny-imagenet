@@ -63,7 +63,7 @@ fastjsonschema==2.21.2
     # via nbformat
 filelock==3.19.1
     # via torch
-fonttools==4.59.2
+fonttools==4.61.0
     # via matplotlib
 fqdn==1.5.1
     # via jsonschema
