@@ -169,7 +169,7 @@ narwhals==2.5.0
     # via bokeh
 nbclient==0.10.2
     # via nbconvert
-nbconvert==7.16.6
+nbconvert==7.17.0
     # via jupyter-server
 nbformat==5.10.4
     # via
